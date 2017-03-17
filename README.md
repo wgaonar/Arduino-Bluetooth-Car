@@ -1,6 +1,6 @@
 # bluetooth_Arduino_Car
 
-<img src="01-images/00-movilRobotCompleted.png" width="500" margin= "0px 10%">
+<img src="01-images/00-movilRobotCompleted.png" width="500" margin="auto">
 
 This is a simple project to apply the knowledge about arduino and the development of movil applications with App Inventor from MIT for doing a funny and a simple movil robot controlled by a running application on the cell phone and throughout Bluetooth
 
