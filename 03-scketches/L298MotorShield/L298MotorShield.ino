@@ -1,13 +1,13 @@
 #include <SoftwareSerial.h>
 
-const int TxPin = 4;
-const int RxPin = 7;
+const int TxPin = 6;  // Go to RX in HC-05 bluetooth module
+const int RxPin = 7;  // Go to TX in HC-05 bluetooth module
 
 const int servoPin = 2;
 
-const int echoPin = 3;
-const int trigPin = 5;
-const int analogPin = 0;
+const int echoPin = 14; // Use A0 as digital pin
+const int trigPin = 15; // Use A1 as digital pin
+
 
 const int in1Pin = 8;
 const int in2Pin = 9;
@@ -36,7 +36,7 @@ void setup()
   
   // initialize my port one
   SerialOne.begin(9600);
-  Serial.print("My serial port: one, is open..."); 
+  Serial.println("My serial por is open..."); 
 
   pinMode(servoPin, OUTPUT);
   
@@ -56,13 +56,15 @@ void setup()
   moveNone(); 
 }
 
-void loop() {
+void loop() 
+{
   
   // By default, the last intialized port is listening.
   // when you want to listen on a port, explicitly select it:
   SerialOne.listen();
    
-  if(SerialOne.available() > 0) {
+  if(SerialOne.available() > 0) 
+  {
     // look for the nexts valid integers
     movTipo = SerialOne.parseInt();
     movCant = SerialOne.parseInt();
@@ -72,7 +74,8 @@ void loop() {
     Serial.print("movCant:\t");
     Serial.println(movCant);
     
-    switch (movTipo) {
+    switch (movTipo) 
+    {
       case 1: {
         Serial.println("adelante");
         moveForward(movCant);
@@ -109,9 +112,19 @@ void loop() {
       break;   
       default:
         break;
-    }   
+    }
+    
   }
   
+  else
+  {
+    moveForward(128);
+    delay(500);
+
+    moveBackward(128);
+    delay(500);
+  }   
+
   /*
   int val = analogRead(analogPin);
   delay(10);
